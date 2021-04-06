@@ -1,0 +1,44 @@
+# Algoritmo de punto fijo
+# [a,b] intervalo de búsqueda
+# error = tolera
+
+import numpy as np
+import math as mt
+
+def puntofijo(gx,a,tolera, iteramax = 15):
+    i = 1 # iteración
+    b = gx(a)
+    tramo = abs(b-a)
+    while(tramo>=tolera and i<=iteramax ):
+        a = b
+        b = gx(a)
+        tramo = abs(b-a)
+        i = i + 1
+    respuesta = b
+    
+    # Validar respuesta
+    if (i>=iteramax ):
+        respuesta = np.nan
+    return(respuesta)
+
+# PROGRAMA ---------
+
+# INGRESO
+fx = lambda x: (2*x**4 - 5*x**3 + x -2)
+gx = lambda x: ((5*x**3 - x + 2)/2)**(1/4)
+
+a = 0       # intervalo
+b = 1
+tolera = 0.001
+iteramax = 15  # itera máximo
+muestras = 51  # gráfico
+tramos = 50
+
+# PROCEDIMIENTO
+respuesta = puntofijo(gx,a,tolera)
+
+# SALIDA
+print(respuesta)
+
+
+// la raiz real negativa no se puede hallar ya que g(x) no tiene un punto pararelo con la raiz real negativa de la funcion   
